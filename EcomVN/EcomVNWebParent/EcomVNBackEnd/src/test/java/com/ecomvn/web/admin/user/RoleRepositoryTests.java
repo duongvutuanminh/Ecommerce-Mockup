@@ -20,7 +20,7 @@ public class RoleRepositoryTests {
 	private RoleRepository repo;
 	
 	@Test 
-	public void testCreateFirstRole() {
+	public void testCreateAdminRole() {
 		Role admin = new Role("Admin");
 		//assertion purpose
 		Role savedRole = repo.save(admin);
@@ -31,6 +31,13 @@ public class RoleRepositoryTests {
 	public void testCreateVendorRole() {
 		Role vendor = new Role("Vendor");
 		Role savedRole = repo.save(vendor);
+		assertThat(savedRole.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testCreateUserRole() {
+		Role user = new Role("User");
+		Role savedRole = repo.save(user);
 		assertThat(savedRole.getId()).isGreaterThan(0);
 	}
 }

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content = "text/html; charset=UTF-8">
 	<meta name = "viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	
-    <title>Home - Ecommerce Admin</title>
+    <title>Home - Ecommerce User</title>
     
     <link rel = "stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <script type="text/javascript" th:src="@{webjars/jquery/jquery.min.js}"></script>
@@ -33,8 +33,49 @@
 		</nav>
 	</div>
 	
-	<div> 
-		<h1 class="text-center">Welcome to Ecommerce Admin Control Panel</h1>
+	<div>
+		<a th:href = "@{user/create}">Create new user</a>
+	</div>
+	
+	<div th:if = "${message != null}" class="alert alert-success text-center">
+		[[${message}]]
+	</div>
+	
+	<div>
+		<table class = "table table-bordered table-striped table-responsive-xl">
+			<thead class = "thead-dark">
+				<tr>
+					<th>
+						User ID
+					</th>
+				
+					<th>
+						User First Name
+					</th>
+				
+					<th>
+						User Last Name
+					</th>
+				
+					<th>
+						User Email
+					</th>
+				
+					<th>
+						Roles
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user:${listUserInPage}">
+					<td>[[${user.id}]]</td>
+					<td>[[${user.firstName}]]</td>
+					<td>[[${user.lastName}]]</td>
+					<td>[[${user.email}]]</td>
+					<td>[[${user.roles}]]</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	
 	<footer class="fixed-bottom bg-light text-center">
