@@ -37,4 +37,16 @@ public class UserService {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 	}
+	
+	public boolean isEmailUnique(String email) {
+		User user = null;
+		try {
+			user = repo.getUserByEmail(email);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//if no user found with the email, then email is unique.
+		return user == null;
+	}
 }

@@ -31,7 +31,7 @@ public class UserRepositoryTest {
 		//Retrieving role from the database 
 		Role role = entityManager.find(Role.class, 1);
 		User userA= new User("Nguyen Van", "A", "nguyenvana98@gmail.com", "aaa888aaa");
-		userA.addRole(role);
+		userA.setRole(role);
 		User savedUser = repo.save(userA);
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
@@ -43,7 +43,7 @@ public class UserRepositoryTest {
 		//this person is a vendor 
 		Role role = new Role(2);
 		User userB= new User("Nguyen Van", "B", "nguyenvanb99@gmail.com", "bbb666bbb");
-		userB.addRole(role);
+		userB.setRole(role);
 		User savedUser = repo.save(userB);
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
@@ -56,8 +56,8 @@ public class UserRepositoryTest {
 		Role role = new Role(2);
 		Role role1 = new Role(1);
 		User userB= new User("Ruvi", "Oshan", "oshanruvi01@gmail.com", "oshanNow");
-		userB.addRole(role);
-		userB.addRole(role1);
+		userB.setRole(role);
+		userB.setRole(role1);
 		User savedUser = repo.save(userB);
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
@@ -78,10 +78,14 @@ public class UserRepositoryTest {
 	    if (user != null) {
 	        System.out.println("User: " + user.getFirstName() + " " + user.getLastName());
 	        System.out.println("Email: " + user.getEmail());
-	        System.out.println("Roles:");
-	        for (Role role : user.getRoles()) {
-	            System.out.println("- " + role.getName());
-	        }
+	        System.out.println("Role: " + user.getRole());
 	    }
+	}
+	
+	@Test
+	public void testGetUserByEmail() {
+		String email = "duongvutuanminh2811@gmail.com";
+		User user = repo.getUserByEmail(email);
+		assertThat(user).isNotNull();
 	}
 }

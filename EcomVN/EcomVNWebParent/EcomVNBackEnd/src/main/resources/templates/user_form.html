@@ -32,7 +32,7 @@
 	
     <div class="container">
         <h2>Create User</h2>
-        <form method="post" th:action="@{/user/save}">
+        <form method="post" th:action="@{/user/save}" onsubmit="return checkEmailUnique(this)">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" name="firstName" class="form-control" required>
@@ -43,15 +43,15 @@
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
+                <input type="email" id="email" name="email" class="form-control" required>   
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="roles">Role:</label>
-                <select id="roles" name="roles" class="form-control" required>
+                <label for="role">Role:</label>
+                <select id="role" name="role" class="form-control" required>
 					<option value="">None</option>
 					<option th:each="role : ${allRoles}" th:text="${role.getName}" th:value="${role.getId}"></option>
 				</select>
@@ -65,5 +65,31 @@
 	  </div>
 	</footer>
 	</div>
+	
+	<script type="text/javascript">
+    function checkEmailUnique(form) {
+        var url = "[[@{/user/check_email}]]";
+        var emailValue = $('input[name="email"][id="email"]').val();
+        var securityToken = $("input[name='_csrf']").val();
+        var params = { email: emailValue, _csrf: securityToken };
+
+        // Use jQuery.ajax instead of $.post to have more control over the form submission
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: params,
+            async: false, // Set async to false to wait for the response before submitting the form
+            success: function (response) {
+                if (response === "valid") {
+                    form.submit(); // Submit the form if the email is valid
+                } else {
+                    alert("Email is duplicated. Please choose a different email.");
+                }
+            }
+        });
+
+        return false; // Prevent the default form submission
+    }
+</script>
 </body>
 </html>
