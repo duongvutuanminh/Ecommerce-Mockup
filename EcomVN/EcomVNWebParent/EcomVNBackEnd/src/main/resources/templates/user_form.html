@@ -56,6 +56,16 @@
 					<option th:each="role : ${allRoles}" th:text="${role.getName}" th:value="${role.getId}"></option>
 				</select>
             </div>
+            <div class="form-group">
+			    <label for="location">Location:</label>
+			    <select id="location" name="location" class="form-control" required>
+			        <option value="" disabled selected>Select a location</option>
+			        <option th:each="location : ${allLocation}"
+			                th:value="${location.getValue}"
+			                th:text="${location.getValue}"></option>
+			    </select>
+			</div>
+
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
@@ -68,6 +78,7 @@
 	
 	<script type="text/javascript">
     function checkEmailUnique(form) {
+		
         var url = "[[@{/user/check_email}]]";
         var emailValue = $('input[name="email"][id="email"]').val();
         var securityToken = $("input[name='_csrf']").val();

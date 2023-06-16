@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
+import com.ecomvn.common.entity.Location;
 import com.ecomvn.common.entity.Role;
 import com.ecomvn.common.entity.User;
+import com.github.javafaker.Faker;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -30,7 +33,8 @@ public class UserRepositoryTest {
 	public void testCreateUser() {
 		//Retrieving role from the database 
 		Role role = entityManager.find(Role.class, 1);
-		User userA= new User("Nguyen Van", "A", "nguyenvana98@gmail.com", "aaa888aaa");
+		Location location = Location.DA_NANG;
+		User userA= new User("Nguyen Van", "A", "nguyenvana98@gmail.com", "aaa888aaa", location);
 		userA.setRole(role);
 		User savedUser = repo.save(userA);
 		assertThat(savedUser.getId()).isGreaterThan(0);
@@ -88,4 +92,22 @@ public class UserRepositoryTest {
 		User user = repo.getUserByEmail(email);
 		assertThat(user).isNotNull();
 	}
+	
+	@Test
+	public void migrateFakeUsers() {
+        Faker faker = new Faker();
+        Random random = new Random();
+        for (int i = 1; i <= 1000; i++) {
+            String lastName = faker.name().lastName();
+            String firstName = faker.name().firstName();
+            String email = lastName.toLowerCase() + "." + firstName.toLowerCase() + "." + (1900 + random.nextInt(2023-1900)) + "@gmail.com";
+            String password = faker.internet().password();
+            Location[] locations = Location.values();
+            Location location = locations[random.nextInt(locations.length)];
+            User user= new User(lastName, firstName, email, password, location);
+            user.setRole(entityManager.find(Role.class, 3));
+            repo.save(user);
+        }
+    }
+
 }

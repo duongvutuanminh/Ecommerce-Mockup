@@ -2,6 +2,8 @@ package com.ecomvn.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,10 +26,31 @@ public class User {
 	private String firstName;
 
 	@Column(length = 128, nullable = false, unique = true)
-	private String email;
+    private String email;
 
 	@Column(length = 64, nullable = false)
 	private String password;
+	
+	@Column(length = 128, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Location location;
+
+	public String getLocation() {
+		return location.getValue();
+	}
+
+	public void setLocation(String location) {
+		this.location = Location.setValue(location);
+	}
+
+	public User(String lastName, String firstName, String email, String password, Location location) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.password = password;
+		this.location = location;
+	}
 
 	@OneToOne
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

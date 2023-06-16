@@ -1,11 +1,15 @@
 package com.ecomvn.web.admin.user;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ecomvn.common.entity.Location;
 import com.ecomvn.common.entity.Role;
 import com.ecomvn.common.entity.User;
 
@@ -36,6 +40,7 @@ public class UserService {
 	private void encodePassword(User user) {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
+		repo.save(user);
 	}
 	
 	public boolean isEmailUnique(String email) {
@@ -48,5 +53,11 @@ public class UserService {
 		}
 		//if no user found with the email, then email is unique.
 		return user == null;
+	}
+	
+	public List<Location> allLocation() {
+		Location[] locationsArray = Location.values();
+		List<Location> locationList = new ArrayList<>(Arrays.asList(locationsArray));
+		return locationList;
 	}
 }
