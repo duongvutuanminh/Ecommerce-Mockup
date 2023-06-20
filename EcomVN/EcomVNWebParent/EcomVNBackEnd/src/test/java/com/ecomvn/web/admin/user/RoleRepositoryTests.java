@@ -21,10 +21,13 @@ public class RoleRepositoryTests {
 	
 	@Test 
 	public void testCreateAdminRole() {
-		Role admin = new Role("Admin");
+		String description = "ADMIN can have access to...";
+		String abberviation = "ADM";
+		String name = "Admin";
+		Role admin = new Role(abberviation, name, description);
 		//assertion purpose
 		Role savedRole = repo.save(admin);
-		assertThat(savedRole.getId()).isGreaterThan(0);
+		assertThat(savedRole.getId()).isEqualTo("ADM");
 	}
 	
 	@Test

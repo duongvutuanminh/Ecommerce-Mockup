@@ -16,7 +16,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.ecomvn.common.entity.Location;
 import com.ecomvn.common.entity.Role;
-import com.ecomvn.common.entity.User;
+import com.ecomvn.common.entity.User_Detail;
 import com.github.javafaker.Faker;
 
 @DataJpaTest
@@ -26,6 +26,7 @@ public class UserRepositoryTest {
 	@Autowired 
 	private UserRepository repo;
 	
+	
 	@Autowired
 	private TestEntityManager entityManager;
 	
@@ -34,9 +35,9 @@ public class UserRepositoryTest {
 		//Retrieving role from the database 
 		Role role = entityManager.find(Role.class, 1);
 		Location location = Location.DA_NANG;
-		User userA= new User("Nguyen Van", "A", "nguyenvana98@gmail.com", "aaa888aaa", location);
+		User_Detail userA= new User_Detail("Nguyen Van", "A", "nguyenvana98@gmail.com", "aaa888aaa", location);
 		userA.setRole(role);
-		User savedUser = repo.save(userA);
+		User_Detail savedUser = repo.save(userA);
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
 	
@@ -46,9 +47,9 @@ public class UserRepositoryTest {
 		//This id correspond to the id in the table
 		//this person is a vendor 
 		Role role = new Role(2);
-		User userB= new User("Nguyen Van", "B", "nguyenvanb99@gmail.com", "bbb666bbb");
+		User_Detail userB= new User_Detail("Nguyen Van", "B", "nguyenvanb99@gmail.com", "bbb666bbb");
 		userB.setRole(role);
-		User savedUser = repo.save(userB);
+		User_Detail savedUser = repo.save(userB);
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
 	
@@ -59,17 +60,17 @@ public class UserRepositoryTest {
 		//this person is a vendor 
 		Role role = new Role(2);
 		Role role1 = new Role(1);
-		User userB= new User("Ruvi", "Oshan", "oshanruvi01@gmail.com", "oshanNow");
+		User_Detail userB= new User_Detail("Ruvi", "Oshan", "oshanruvi01@gmail.com", "oshanNow");
 		userB.setRole(role);
 		userB.setRole(role1);
-		User savedUser = repo.save(userB);
+		User_Detail savedUser = repo.save(userB);
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
 	
 	@Test 
 	public void testListAllUser() {
 		List<String> userInfo = new ArrayList<String>();
-		Iterable<User> listUser = repo.findAll();
+		Iterable<User_Detail> listUser = repo.findAll();
 		listUser.forEach(user -> userInfo.add(user.toString()));
 		for (String user : userInfo) {
 		    System.out.println(user);
@@ -78,7 +79,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void testFindUserByID() {
-		User user = repo.findById(1).orElse(null);
+		User_Detail user = repo.findById(1).orElse(null);
 	    if (user != null) {
 	        System.out.println("User: " + user.getFirstName() + " " + user.getLastName());
 	        System.out.println("Email: " + user.getEmail());
@@ -89,7 +90,7 @@ public class UserRepositoryTest {
 	@Test
 	public void testGetUserByEmail() {
 		String email = "duongvutuanminh2811@gmail.com";
-		User user = repo.getUserByEmail(email);
+		User_Detail user = repo.getUserByEmail(email);
 		assertThat(user).isNotNull();
 	}
 	
@@ -104,8 +105,8 @@ public class UserRepositoryTest {
             String password = faker.internet().password();
             Location[] locations = Location.values();
             Location location = locations[random.nextInt(locations.length)];
-            User user= new User(lastName, firstName, email, password, location);
-            user.setRole(entityManager.find(Role.class, 3));
+            User_Detail user= new User_Detail(lastName, firstName, email, password, location);
+            user.setRole(entityManager.find(Role.class, 2));
             repo.save(user);
         }
     }

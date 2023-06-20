@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.ecomvn.common.entity.Role"/>
+    <fullyQualifiedTypeName name="com.ecomvn.common.entity.User"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Embedded"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="com.ecomvn.common.entity.idGenerator.UserIDGenerator"/>
+    <fullyQualifiedTypeName name="org.hibernate.id.Configurable"/>
+</qualifiedTypeNameHistroy>

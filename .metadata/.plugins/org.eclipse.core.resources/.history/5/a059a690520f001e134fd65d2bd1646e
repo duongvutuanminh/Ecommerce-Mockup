@@ -1,0 +1,24 @@
+package com.ecomvn.common.entity.idGenerator;
+
+import java.io.Serializable;
+
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+
+import com.ecomvn.common.entity.Role;
+import com.ecomvn.common.entity.User;
+
+public class UserIDGenerator implements IdentifierGenerator {
+
+    @Override
+    public Serializable generate(SharedSessionContractImplementor session, Object object) {
+        User user = (User) object;
+        Role role = user.getRole();
+
+        // Generate the custom ID format
+        String customedId = user.getId() + "#" + role.getId();
+
+        return customedId;
+    }
+}
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1685584976585_0" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1685584976604_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1685585028259_3" label="EcomVNProject" name="EcomVNProject">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EcomVN" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EcomVNCommon" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EcomVNWebParent" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EcomVNBackEnd" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EcomVNFrontEnd" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1685584979085_2" label="Window Working Set" name="Aggregate for window 1685584979085"/>
+</workingSetManager>

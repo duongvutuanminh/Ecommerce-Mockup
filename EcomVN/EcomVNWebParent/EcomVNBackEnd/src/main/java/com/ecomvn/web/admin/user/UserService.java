@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecomvn.common.entity.Location;
 import com.ecomvn.common.entity.Role;
-import com.ecomvn.common.entity.User;
+import com.ecomvn.common.entity.User_Detail;
 
 @Service
 public class UserService {
@@ -24,27 +24,28 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public List<User> listAll(){
-		return (List<User>) repo.findAll();
+	public List<User_Detail> listAll(){
+		return (List<User_Detail>) repo.findAll();
 	}
 	
 	public List<Role> allRoles() {
 		return (List<Role>) roleRepo.findAll();
 	}
 	
-	public void save(User user) {
+	public void save(User_Detail user) {
 		encodePassword(user);
 		repo.save(user);
 	}
 	
-	private void encodePassword(User user) {
+	User_Detail encodePassword(User_Detail user) {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
-		repo.save(user);
+		passwordEncoder.matches(user.getPassword(), encodedPassword);
+		return user;
 	}
 	
 	public boolean isEmailUnique(String email) {
-		User user = null;
+		User_Detail user = null;
 		try {
 			user = repo.getUserByEmail(email);
 		} catch (Exception e) {

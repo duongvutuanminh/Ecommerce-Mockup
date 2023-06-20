@@ -1,0 +1,14 @@
+package com.ecomvn.common.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class UserLogin {
+	@Column(name = "password", table = "user_login")
+	private String password;
+
+	public String getPassword() {
+		return password;
+	}
+}

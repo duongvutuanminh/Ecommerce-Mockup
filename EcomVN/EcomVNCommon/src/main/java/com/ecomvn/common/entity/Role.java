@@ -2,8 +2,6 @@ package com.ecomvn.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,31 +9,39 @@ import jakarta.persistence.Table;
 @Table(name = "role")
 public class Role {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(length=3, nullable = false, unique = true)
+	private String id;
 	
 	@Column(length = 40, nullable = false, unique = true)
 	private String name;
 	
-	public Role() {
-	}
+	@Column(columnDefinition = "TEXT", nullable = true)
+	private String description;
 	
-	public Role(String name) {
-		super();
-		this.name = name;
-	}
-
-	public Role(Integer id) {
+	public Role(String id, String name, String description) {
 		super();
 		this.id = id;
+		this.name = name;
+		this.description = description;
 	}
 
-	public Integer getId() {
+	public Role() {
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getName() {
@@ -47,6 +53,6 @@ public class Role {
 	}
 
 	public String toString() {
-		return this.getName();
+		return this.getName()+ ": " + this.getDescription();
 	}
 }

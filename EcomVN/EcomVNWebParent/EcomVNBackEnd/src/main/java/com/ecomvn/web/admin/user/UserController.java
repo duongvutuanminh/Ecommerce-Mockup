@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ecomvn.common.entity.Role;
-import com.ecomvn.common.entity.User;
+import com.ecomvn.common.entity.User_Detail;
 import com.ecomvn.common.entity.Location;
 
 @Controller
@@ -23,7 +23,7 @@ public class UserController {
 	
 	@GetMapping("")
 	public String listAll(Model model) {
-		List<User> listUser = userService.listAll();
+		List<User_Detail> listUser = userService.listAll();
 		//coming from a database, cast into a list of user
 		model.addAttribute("listUserInPage", listUser);
 		return "user";
@@ -39,7 +39,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/save")
-	public String saveUser(User user, RedirectAttributes redirectAttributes) {
+	public String saveUser(User_Detail user, RedirectAttributes redirectAttributes) {
 		userService.save(user);
 		redirectAttributes.addFlashAttribute("message", "User saved successfully");
 		return "redirect:/user";

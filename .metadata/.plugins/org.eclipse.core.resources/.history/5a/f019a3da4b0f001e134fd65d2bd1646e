@@ -1,0 +1,5 @@
+package com.ecomvn.common.entity;
+
+public class UserLogin {
+
+}

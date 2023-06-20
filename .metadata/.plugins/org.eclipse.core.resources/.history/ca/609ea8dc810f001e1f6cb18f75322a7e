@@ -1,0 +1,114 @@
+package com.ecomvn.web.admin.user;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
+
+import com.ecomvn.common.entity.Location;
+import com.ecomvn.common.entity.Role;
+import com.ecomvn.common.entity.User;
+import com.github.javafaker.Faker;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class UserRepositoryTest {
+	@Autowired 
+	private UserRepository repo;
+	
+	
+	@Autowired
+	private TestEntityManager entityManager;
+	
+	@Test
+	public void testCreateUser() {
+		//Retrieving role from the database 
+		Role role = entityManager.find(Role.class, 1);
+		Location location = Location.DA_NANG;
+		User userA= new User("Nguyen Van", "A", "nguyenvana98@gmail.com", "aaa888aaa", location);
+		userA.setRole(role);
+		User savedUser = repo.save(userA);
+		assertThat(savedUser.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testCreate2ndUser() {
+		//Create role with correct id 
+		//This id correspond to the id in the table
+		//this person is a vendor 
+		Role role = new Role(2);
+		User userB= new User("Nguyen Van", "B", "nguyenvanb99@gmail.com", "bbb666bbb");
+		userB.setRole(role);
+		User savedUser = repo.save(userB);
+		assertThat(savedUser.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testCreateUserWith2Roles() {
+		//Create role with correct id 
+		//This id correspond to the id in the table
+		//this person is a vendor 
+		Role role = new Role(2);
+		Role role1 = new Role(1);
+		User userB= new User("Ruvi", "Oshan", "oshanruvi01@gmail.com", "oshanNow");
+		userB.setRole(role);
+		userB.setRole(role1);
+		User savedUser = repo.save(userB);
+		assertThat(savedUser.getId()).isGreaterThan(0);
+	}
+	
+	@Test 
+	public void testListAllUser() {
+		List<String> userInfo = new ArrayList<String>();
+		Iterable<User> listUser = repo.findAll();
+		listUser.forEach(user -> userInfo.add(user.toString()));
+		for (String user : userInfo) {
+		    System.out.println(user);
+		}
+	}
+	
+	@Test
+	public void testFindUserByID() {
+		User user = repo.findById(1).orElse(null);
+	    if (user != null) {
+	        System.out.println("User: " + user.getFirstName() + " " + user.getLastName());
+	        System.out.println("Email: " + user.getEmail());
+	        System.out.println("Role: " + user.getRole());
+	    }
+	}
+	
+	@Test
+	public void testGetUserByEmail() {
+		String email = "duongvutuanminh2811@gmail.com";
+		User user = repo.getUserByEmail(email);
+		assertThat(user).isNotNull();
+	}
+	
+	@Test
+	public void migrateFakeUsers() {
+        Faker faker = new Faker();
+        Random random = new Random();
+        for (int i = 1; i <= 1000; i++) {
+            String lastName = faker.name().lastName();
+            String firstName = faker.name().firstName();
+            String email = lastName.toLowerCase() + "." + firstName.toLowerCase() + "." + (1900 + random.nextInt(2023-1900)) + "@gmail.com";
+            String password = faker.internet().password();
+            Location[] locations = Location.values();
+            Location location = locations[random.nextInt(locations.length)];
+            User user= new User(lastName, firstName, email, password, location);
+            user.setRole(entityManager.find(Role.class, 2));
+            repo.save(user);
+        }
+    }
+
+}

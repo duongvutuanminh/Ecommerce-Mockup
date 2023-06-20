@@ -1,0 +1,6 @@
+package com.ecomvn.common.entity;
+
+@Embeddable
+public class UserLogin {
+
+}

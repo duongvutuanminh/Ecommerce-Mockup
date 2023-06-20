@@ -1,0 +1,5 @@
+package com.ecomvn.common.entity.idGenerator;
+
+public class UserIDGenerator {
+
+}
