@@ -10,25 +10,34 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 
 public class UserIDGenerator implements IdentifierGenerator {
 	
+	public static final String INITIAL_PARAM = "";
+	private String initialParam;
+	
+	public static final String INCREMENT_PARAM = "";
+	private String incrementParam;
+	
 	public static final String VALUE_PREFIX_PARAMETER = "valuePrefix";
     public static final String VALUE_PREFIX_DEFAULT = "";
     private String valuePrefix;
 	
-    public static final String NUMBER_FORMAT_PARAMETER = "numberFormat";
     public static final String NUMBER_FORMAT_DEFAULT = "%05d";
-    private String numberFormat;
+    private String numberFormat = NUMBER_FORMAT_DEFAULT;
     
 	@Override
     public Serializable generate(SharedSessionContractImplementor session,
             Object object) throws HibernateException {
 		User user = (User) object;
 		
-        return valuePrefix + "#" + generateUniqueIdentifier();
+        return valuePrefix + "#" + String.format(numberFormat, generateUniqueIdentifier());
     }
 	
 	private String generateUniqueIdentifier() {
-		
+		return 
 	}
 	
-	public void setC
+	public void setPrefixValues(String valuePrefix, String initialParam, String incrementParam) {
+		this.valuePrefix = valuePrefix;
+		this.initialParam = initialParam;
+		this.incrementParam = incrementParam;
+	}
 }  
