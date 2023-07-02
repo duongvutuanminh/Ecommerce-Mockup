@@ -583,3 +583,31 @@
 2023-06-21 02:31:59,213 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2023-06-21 02:31:59,218 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2023-06-21 02:31:59,222 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNCommon\src\test\resources
+2023-06-21 08:42:14,824 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-06-21 12:57:24,701 [Worker-9: reload maven project] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/EcomVNCommon: com.ecomvn:EcomVNCommon:0.0.1-SNAPSHOT with classifier  to /EcomVNCommon/target/classes
+2023-06-21 13:03:44,939 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-06-21 13:55:40,644 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 13:55:40,666 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-06-21 13:55:40,670 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNCommon\src\test\resources
+2023-06-21 13:55:46,542 [Worker-17: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/EcomVNCommon: com.ecomvn:EcomVNCommon:0.0.1-SNAPSHOT with classifier  to /EcomVNCommon/target/classes
+2023-06-21 13:55:46,599 [Worker-17: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/EcomVNCommon: com.ecomvn:EcomVNCommon:0.0.1-SNAPSHOT with classifier  to /EcomVNCommon/target/classes
+2023-06-21 13:55:46,747 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 13:55:46,773 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 5 resources from src\main\resources to target\classes
+2023-06-21 13:55:46,794 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNWebParent\EcomVNBackEnd\src\test\resources
+2023-06-21 13:55:47,816 [Worker-17: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/EcomVNCommon: com.ecomvn:EcomVNCommon:0.0.1-SNAPSHOT with classifier  to /EcomVNCommon/target/classes
+2023-06-21 13:55:47,848 [Worker-17: Building] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/EcomVNCommon: com.ecomvn:EcomVNCommon:0.0.1-SNAPSHOT with classifier  to /EcomVNCommon/target/classes
+2023-06-21 13:55:48,056 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 13:55:48,094 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 13:55:48,105 [Worker-17: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNWebParent\EcomVNFrontEnd\src\test\resources
+2023-06-21 14:04:30,120 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 14:04:30,129 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-06-21 14:04:30,134 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNCommon\src\test\resources
+2023-06-21 14:30:34,841 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 14:30:34,873 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-06-21 14:30:34,882 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNCommon\src\test\resources
+2023-06-21 14:48:19,773 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 14:48:19,813 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-06-21 14:48:19,828 [Worker-35: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNCommon\src\test\resources
+2023-06-21 14:55:38,110 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-21 14:55:38,119 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-06-21 14:55:38,125 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\Java EE Project\Ecommerce-Mockup\EcomVN\EcomVNCommon\src\test\resources

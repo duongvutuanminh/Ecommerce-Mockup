@@ -9,4 +9,8 @@
     <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
     <fullyQualifiedTypeName name="com.ecomvn.common.entity.idGenerator.UserIDGenerator"/>
     <fullyQualifiedTypeName name="org.hibernate.id.Configurable"/>
+    <fullyQualifiedTypeName name="org.hibernate.service.spi.Configurable"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.security.SecurityProperties.User"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
 </qualifiedTypeNameHistroy>

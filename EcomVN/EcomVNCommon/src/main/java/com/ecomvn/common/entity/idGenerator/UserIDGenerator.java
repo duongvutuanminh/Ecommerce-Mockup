@@ -1,14 +1,17 @@
 package com.ecomvn.common.entity.idGenerator;
 
 import java.io.Serializable;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.id.Configurable;
 import org.hibernate.id.IdentifierGenerator;
+import org.hibernate.query.spi.QueryImplementor;
+import org.hibernate.service.spi.Configurable;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 
-public class UserIDGenerator implements IdentifierGenerator {
+public class UserIDGenerator implements IdentifierGenerator, Configurable  {
 	
 	public static final String INITIAL_PARAM = "";
 	private String initialParam;
@@ -23,21 +26,35 @@ public class UserIDGenerator implements IdentifierGenerator {
     public static final String NUMBER_FORMAT_DEFAULT = "%05d";
     private String numberFormat = NUMBER_FORMAT_DEFAULT;
     
-	@Override
-    public Serializable generate(SharedSessionContractImplementor session,
-            Object object) throws HibernateException {
-		User user = (User) object;
-		
-        return valuePrefix + "#" + String.format(numberFormat, generateUniqueIdentifier());
-    }
-	
-	private String generateUniqueIdentifier() {
-		return 
-	}
+    private String prefix;
+    @Override
+    public Serializable generate(
+    	      SharedSessionContractImplementor session, Object obj) 
+    	      throws HibernateException {
+
+    	    QueryImplementor<User> query = session.createQuery("SELECT user u FROM User WHERE u.id LIKE :prefix", User.class);
+    	    query.setParameter("prefix", prefix + "%");
+    	    Stream<User> usersStream = query.stream();
+
+    	    Integer maxIDFound = usersStream
+    	      .map(user -> user.getId(prefix + "#", ""))
+    	      .mapToLong(Integer::parseInt)
+    	      .max()
+    	      .orElse(0L);
+
+    	    return prefix + "#" + String.format(numberFormat, maxIDFound + 1);
+    	}
+
 	
 	public void setPrefixValues(String valuePrefix, String initialParam, String incrementParam) {
 		this.valuePrefix = valuePrefix;
 		this.initialParam = initialParam;
 		this.incrementParam = incrementParam;
+	}
+
+	@Override
+	public void configure(Map<String, Object> configurationValues) {
+		// TODO Auto-generated method stub
+		
 	}
 }  
